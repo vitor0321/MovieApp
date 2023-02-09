@@ -1,5 +1,6 @@
 package com.example.movieapp
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,14 +17,16 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-
 @Composable
-fun MoviesRow(movie: String) {
+fun MoviesRow(movie: String, onClick: (String) -> Unit) {
     Card(
         modifier = Modifier
             .padding(12.dp)
             .fillMaxWidth()
-            .height(130.dp),
+            .height(130.dp)
+            .clickable {
+                onClick(movie)
+            },
         shape = RoundedCornerShape(corner = CornerSize(12.dp)),
         elevation = 6.dp
     ) {
@@ -48,5 +51,7 @@ fun MoviesRow(movie: String) {
 @Preview
 @Composable
 fun MoviesRowPreview() {
-    MoviesRow(movie = "Avatar")
+    MoviesRow(movie = "Avatar"){
+
+    }
 }

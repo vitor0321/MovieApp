@@ -14,49 +14,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.movieapp.navigation.MovieAppNavigation
 import com.example.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { MyApp { MainContent() } }
+        setContent { MyApp { MovieAppNavigation() } }
     }
 }
 
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(topBar = {
-            TopAppBar(
-                backgroundColor = Color.Magenta,
-                elevation = 5.dp
-            ) {
-                Text(text = "Movies")
-            }
-        }) { content() }
-    }
-}
-
-@Composable
-fun MainContent(
-    listMovies: List<String> = listOf(
-        "Avatar",
-        "300",
-        "Harry Potter",
-        "Life"
-    )
-) {
-    Column(modifier = Modifier.padding(12.dp)) {
-        LazyColumn {
-            items(items = listMovies) { movie ->
-                MoviesRow(movie = movie)
-            }
-        }
+        content()
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MyApp { MainContent() }
+    MyApp { MovieAppNavigation() }
 }
