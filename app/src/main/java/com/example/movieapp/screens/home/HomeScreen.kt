@@ -9,27 +9,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.movieapp.MoviesRow
-import com.example.movieapp.composables.TopBar
+import com.example.movieapp.widgets.MoviesRow
+import com.example.movieapp.widgets.TopBar
+import com.example.movieapp.model.Movie
+import com.example.movieapp.model.getMovies
 import com.example.movieapp.navigation.MovieAppScreen
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Scaffold(topBar = { TopBar(name = "Home") })
+    Scaffold(topBar = { TopBar(name = "Movies") })
     {
         it.calculateTopPadding()
         HomeContent(
             navController = navController,
-            listMovies = listOf(
-                "Avatar",
-                "300",
-                "Harry Potter",
-                "Life",
-                "Avatar",
-                "300",
-                "Harry Potter",
-                "Life"
-            )
+            listMovies = getMovies()
         )
     }
 }
@@ -37,12 +30,12 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun HomeContent(
     navController: NavController,
-    listMovies: List<String>
+    listMovies: List<Movie>
 ) {
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn {
-            items(items = listMovies) { movie ->
-                MoviesRow(movie = movie) { movie ->
+            items(items = listMovies) {
+                MoviesRow(movie = it) { movie ->
                     navController.navigate(MovieAppScreen.DetailsScreen.name + "/$movie")
                 }
             }

@@ -1,7 +1,6 @@
 package com.example.movieapp.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.key
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,7 +29,7 @@ fun MovieAppNavigation() {
         ) { backStackEntry ->
             DetailsScreen(
                 navController = navController,
-                movieData = backStackEntry.arguments?.getString("movie")
+                movieId = backStackEntry.arguments?.getString("movie")
             )
         }
     }

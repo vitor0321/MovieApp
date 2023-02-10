@@ -10,3 +10,6 @@ algumas delas são:
 * Card
 * Icons
 * Jetpack Navigation Component
+* Coil to image from URL
+* Text com  buildAnnotatedString 
+* Divider
